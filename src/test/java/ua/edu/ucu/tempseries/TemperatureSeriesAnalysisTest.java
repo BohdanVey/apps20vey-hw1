@@ -174,10 +174,10 @@ public class TemperatureSeriesAnalysisTest {
     public void testTempSummaryStatistics(double[] temperatureSeries) {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         TempSummaryStatistics summaryStatistics = seriesAnalysis.summaryStatistics();
-        assertEquals(summaryStatistics.avgTemp, seriesAnalysis.average(), 0.000001);
-        assertEquals(summaryStatistics.devTemp, seriesAnalysis.deviation(), 0.000001);
-        assertEquals(summaryStatistics.maxTemp, seriesAnalysis.max(), 0.000001);
-        assertEquals(summaryStatistics.minTemp, seriesAnalysis.min(), 0.000001);
+        assertEquals(summaryStatistics.getAvgTemp(), seriesAnalysis.average(), 0.000001);
+        assertEquals(summaryStatistics.getDevTemp(), seriesAnalysis.deviation(), 0.000001);
+        assertEquals(summaryStatistics.getMaxTemp(), seriesAnalysis.max(), 0.000001);
+        assertEquals(summaryStatistics.getMinTemp(), seriesAnalysis.min(), 0.000001);
 
     }
 
@@ -188,13 +188,14 @@ public class TemperatureSeriesAnalysisTest {
     }
 
     @Test(expected = InputMismatchException.class)
-    public void IllegalTest(){
-        double arr[] = {-275.0,5.0,10.0,5.0,62.0,53.0};
+    public void IllegalTest() {
+        double arr[] = {-275.0, 5.0, 10.0, 5.0, 62.0, 53.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(arr);
 
     }
+
     @Test(expected = IllegalArgumentException.class)
-    public void IllegalLengthTest(){
+    public void IllegalLengthTest() {
         double arr[] = {};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(arr);
         seriesAnalysis.average();
