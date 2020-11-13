@@ -20,10 +20,9 @@ public class TemperatureSeriesAnalysis {
     public TemperatureSeriesAnalysis(double[] series) {
         // Check it data is correct
         checkEmptyData(series);
-        length = temperatureSeries.length;
+        length = series.length;
         this.temperatureSeries = series;
     }
-
 
     private void checkEmptyData(double[] Series) {
         for (double temperature : Series) {
@@ -56,7 +55,6 @@ public class TemperatureSeriesAnalysis {
             double value = temperatureSeries[i] - average;
             ans += value * value / length;
         }
-
         return ans;
     }
 
