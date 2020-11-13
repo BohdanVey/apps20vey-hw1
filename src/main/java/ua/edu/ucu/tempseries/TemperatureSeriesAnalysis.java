@@ -8,11 +8,11 @@ public class TemperatureSeriesAnalysis {
 
     double[] temperatureSeries;
     int length;
-    double MINIMUM_TEMPERATURE = -273;
-    double[] DEFAULT_ARRAY = {0.0};
+    static final double MINIMUM_TEMPERATURE = -273.15;
+    static final double[] DEFAULT_ARRAY = {0.0};
 
-    private void checkData(double[] temperatureSeries) {
-        for (double temperature : temperatureSeries) {
+    private void checkData(double[] Series) {
+        for (double temperature : Series) {
             if (temperature < MINIMUM_TEMPERATURE) {
                 throw new InputMismatchException();
             }
@@ -26,17 +26,16 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis() {
-        // Create class, without data
-        temperatureSeries = DEFAULT_ARRAY;
         length = 1;
+        temperatureSeries = DEFAULT_ARRAY;
     }
 
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         // Check it data is correct
         checkData(temperatureSeries);
-        this.temperatureSeries = temperatureSeries;
         length = temperatureSeries.length;
+        this.temperatureSeries = temperatureSeries;
     }
 
     public double average() {
@@ -132,10 +131,10 @@ public class TemperatureSeriesAnalysis {
         length += temps.length;
         if (length > temperatureSeries.length) {
             double[] newArray = new double[length * 2];
-            if (length - temps.length >= 0) System.arraycopy(temperatureSeries, 0, newArray, 0, length - temps.length);
-            {
-                temperatureSeries = newArray;
+            if (length - temps.length >= 0) {
+                System.arraycopy(temperatureSeries, 0, newArray, 0, length - temps.length);
             }
+            temperatureSeries = newArray;
         }
         System.arraycopy(temps, 0, temperatureSeries, length - temps.length, temps.length);
         return length;
