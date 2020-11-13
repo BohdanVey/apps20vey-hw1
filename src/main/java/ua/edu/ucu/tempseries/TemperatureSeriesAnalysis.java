@@ -10,13 +10,6 @@ public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
     private int length;
 
-    public int getLength() {
-        return length;
-    }
-
-    public double[] getTemperatureSeries() {
-        return temperatureSeries;
-    }
 
     public TemperatureSeriesAnalysis() {
         length = 1;
@@ -31,8 +24,16 @@ public class TemperatureSeriesAnalysis {
         this.temperatureSeries = series;
     }
 
-    private void checkEmptyData(double[] Series) {
-        for (double temperature : Series) {
+    public int getLength() {
+        return length;
+    }
+
+    public double[] getTemperatureSeries() {
+        return temperatureSeries;
+    }
+
+    private void checkEmptyData(double[] series) {
+        for (double temperature : series) {
             if (temperature < MINIMUM_TEMPERATURE) {
                 throw new InputMismatchException();
             }
