@@ -4,12 +4,12 @@ package ua.edu.ucu.tempseries;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
-
+    static final double MINIMUM_TEMPERATURE = -273.15;
+    static final double[] DEFAULT_ARRAY = {0.0};
 
     double[] temperatureSeries;
     int length;
-    static final double MINIMUM_TEMPERATURE = -273.15;
-    static final double[] DEFAULT_ARRAY = {0.0};
+
 
     private void checkData(double[] Series) {
         for (double temperature : Series) {
@@ -31,11 +31,11 @@ public class TemperatureSeriesAnalysis {
     }
 
 
-    public TemperatureSeriesAnalysis(double[] temperatureSeries) {
+    public TemperatureSeriesAnalysis(double[] Series) {
         // Check it data is correct
-        checkData(temperatureSeries);
+        checkData(Series);
         length = temperatureSeries.length;
-        this.temperatureSeries = temperatureSeries;
+        this.temperatureSeries = Series;
     }
 
     public double average() {
