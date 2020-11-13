@@ -25,8 +25,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations-java5</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>

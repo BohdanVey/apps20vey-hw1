@@ -1,6 +1,7 @@
 package ua.edu.ucu.tempseries;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -10,7 +11,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testAverage(double[] temperatureSeries, double expResult) {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double actualResult = seriesAnalysis.average();
-        Assert.assertEquals(expResult, actualResult, 0.00001);
+        assertEquals(expResult, actualResult, 0.00001);
     }
 
     @Test
@@ -18,7 +19,7 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {-1.0, -2.0, 1.0, 2.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double actualResult = seriesAnalysis.average();
-        Assert.assertEquals(0, actualResult, 0.00001);
+        assertEquals(0, actualResult, 0.00001);
         double[] temperatureSeries2 = {-1.0, -2.0, 1.0, 2.0, 100.0};
         testAverage(temperatureSeries2, 20);
     }
@@ -26,7 +27,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testDeviation(double[] temperatureSeries, double expResult) {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double actualResult = seriesAnalysis.deviation();
-        Assert.assertEquals(expResult, actualResult, 0.00001);
+        assertEquals(expResult, actualResult, 0.00001);
     }
 
     @Test
@@ -40,7 +41,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testMin(double[] temperatureSeries, double expResult) {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double actualResult = seriesAnalysis.min();
-        Assert.assertEquals(expResult, actualResult, 0.00001);
+        assertEquals(expResult, actualResult, 0.00001);
     }
 
     @Test
@@ -54,7 +55,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testMax(double[] temperatureSeries, double expResult) {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double actualResult = seriesAnalysis.max();
-        Assert.assertEquals(expResult, actualResult, 0.00001);
+        assertEquals(expResult, actualResult, 0.00001);
     }
 
     @Test
@@ -69,7 +70,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testClosest0(double[] temperatureSeries, double expResult) {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double actualResult = seriesAnalysis.findTempClosestToZero();
-        Assert.assertEquals(expResult, actualResult, 0.00001);
+        assertEquals(expResult, actualResult, 0.00001);
     }
 
     @Test
@@ -87,7 +88,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testClosestToValue(double[] temperatureSeries, double expResult, double value) {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double actualResult = seriesAnalysis.findTempClosestToValue(value);
-        Assert.assertEquals(expResult, actualResult, 0.00001);
+        assertEquals(expResult, actualResult, 0.00001);
     }
 
     @Test
@@ -102,7 +103,7 @@ public class TemperatureSeriesAnalysisTest {
         TemperatureSeriesAnalysis seriesAnalysis3 = new TemperatureSeriesAnalysis(temperatureSeries3);
         double expResult3 = 100;
         double actualResult3 = seriesAnalysis3.findTempClosestToValue(51);
-        Assert.assertEquals(expResult3, actualResult3, 0.00001);
+        assertEquals(expResult3, actualResult3, 0.00001);
         testClosestToValue(temperatureSeries3, 100, 52);
 
         double[] temperatureSeries4 = {-110.0, -2.0, -0.5, 0.5, 2.0, 100.0};
@@ -113,9 +114,9 @@ public class TemperatureSeriesAnalysisTest {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double[] actualResult = seriesAnalysis.findTempsLessThen(value);
         for (int i = 0; i < expResult.length; i += 1) {
-            Assert.assertEquals(expResult[i], actualResult[i], 0.00001);
+            assertEquals(expResult[i], actualResult[i], 0.00001);
         }
-        Assert.assertEquals(actualResult.length, expResult.length);
+        assertEquals(actualResult.length, expResult.length);
     }
 
     @Test
@@ -132,9 +133,9 @@ public class TemperatureSeriesAnalysisTest {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double[] actualResult = seriesAnalysis.findTempsGreaterThen(value);
         for (int i = 0; i < expResult.length; i += 1) {
-            Assert.assertEquals(expResult[i], actualResult[i], 0.00001);
+            assertEquals(expResult[i], actualResult[i], 0.00001);
         }
-        Assert.assertEquals(actualResult.length, expResult.length);
+        assertEquals(actualResult.length, expResult.length);
     }
 
     @Test
@@ -149,7 +150,7 @@ public class TemperatureSeriesAnalysisTest {
 
     public void testAddElement(ArrayList<Double> arr, TemperatureSeriesAnalysis seriesAnalysis) {
         for (int i = 0; i < seriesAnalysis.getLength(); i += 1)
-            Assert.assertEquals(arr.get(i), seriesAnalysis.getTemperatureSeries()[i], 0.00001);
+            assertEquals(arr.get(i), seriesAnalysis.getTemperatureSeries()[i], 0.00001);
     }
 
     @Test
@@ -176,10 +177,10 @@ public class TemperatureSeriesAnalysisTest {
     public void testTempSummaryStatistics(double[] temperatureSeries) {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         TempSummaryStatistics summaryStatistics = seriesAnalysis.summaryStatistics();
-        Assert.assertEquals(summaryStatistics.getAvgTemp(), seriesAnalysis.average(), 0.000001);
-        Assert.assertEquals(summaryStatistics.getDevTemp(), seriesAnalysis.deviation(), 0.000001);
-        Assert.assertEquals(summaryStatistics.getMaxTemp(), seriesAnalysis.max(), 0.000001);
-        Assert.assertEquals(summaryStatistics.getMinTemp(), seriesAnalysis.min(), 0.000001);
+        assertEquals(summaryStatistics.getAvgTemp(), seriesAnalysis.average(), 0.000001);
+        assertEquals(summaryStatistics.getDevTemp(), seriesAnalysis.deviation(), 0.000001);
+        assertEquals(summaryStatistics.getMaxTemp(), seriesAnalysis.max(), 0.000001);
+        assertEquals(summaryStatistics.getMinTemp(), seriesAnalysis.min(), 0.000001);
 
     }
 
