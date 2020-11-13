@@ -138,9 +138,7 @@ public class TemperatureSeriesAnalysis {
         int prevLen = length - temps.length;
         if (length > temperatureSeries.length) {
             double[] newArray = new double[length * 2];
-            if (length - temps.length >= 0) {
-                System.arraycopy(temperatureSeries, 0, newArray, 0, prevLen);
-            }
+            System.arraycopy(temperatureSeries, 0, newArray, 0, prevLen);
             temperatureSeries = newArray;
         }
         System.arraycopy(temps, 0, temperatureSeries, prevLen, temps.length);
