@@ -86,10 +86,11 @@ public class TemperatureSeriesAnalysis {
         checkLength();
         double ClosestToValue = temperatureSeries[0] - tempValue;
         for (int i = 1; i < length; i += 1) {
-            if (Math.abs(ClosestToValue) > Math.abs(temperatureSeries[i] - tempValue))
+            if (Math.abs(ClosestToValue) > Math.abs(temperatureSeries[i] - tempValue)) {
                 ClosestToValue = temperatureSeries[i] - tempValue;
-            else if (Math.abs(ClosestToValue) == temperatureSeries[i] - tempValue)
+            } else if (Math.abs(ClosestToValue) == temperatureSeries[i] - tempValue) {
                 ClosestToValue = temperatureSeries[i] - tempValue;
+            }
         }
         return ClosestToValue + tempValue;
     }
@@ -97,17 +98,19 @@ public class TemperatureSeriesAnalysis {
     private double[] getSomeValue(int multiplier, double tempValue) {
         checkLength();
         int lengthThen = 0;
-        for (int i = 0; i < length; i += 1)
+        for (int i = 0; i < length; i += 1) {
             if (multiplier * temperatureSeries[i] < multiplier * tempValue) {
                 lengthThen++;
             }
+        }
         double[] arrayThen = new double[lengthThen];
         int indexNow = 0;
-        for (int i = 0; i < length; i += 1)
+        for (int i = 0; i < length; i += 1) {
             if (multiplier * temperatureSeries[i] < multiplier * tempValue) {
                 arrayThen[indexNow] = temperatureSeries[i];
                 indexNow += 1;
             }
+        }
         return arrayThen;
     }
 
@@ -130,7 +133,9 @@ public class TemperatureSeriesAnalysis {
         if (length > temperatureSeries.length) {
             double[] newArray = new double[length * 2];
             if (length - temps.length >= 0) System.arraycopy(temperatureSeries, 0, newArray, 0, length - temps.length);
-            temperatureSeries = newArray;
+            {
+                temperatureSeries = newArray;
+            }
         }
         System.arraycopy(temps, 0, temperatureSeries, length - temps.length, temps.length);
         return length;
