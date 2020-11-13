@@ -17,11 +17,11 @@ public class TemperatureSeriesAnalysis {
     }
 
 
-    public TemperatureSeriesAnalysis(double[] Series) {
+    public TemperatureSeriesAnalysis(double[] series) {
         // Check it data is correct
-        checkEmptyData(Series);
+        checkEmptyData(series);
         length = temperatureSeries.length;
-        this.temperatureSeries = Series;
+        this.temperatureSeries = series;
     }
 
 
@@ -53,7 +53,8 @@ public class TemperatureSeriesAnalysis {
         double average = average();
         double ans = 0;
         for (int i = 0; i < length; i += 1) {
-            ans += (temperatureSeries[i] - average) * (temperatureSeries[i] - average) / length;
+            double value = temperatureSeries[i] - average;
+            ans += value * value / length;
         }
 
         return ans;
@@ -86,10 +87,11 @@ public class TemperatureSeriesAnalysis {
         checkLength();
         double closestToValue = temperatureSeries[0] - tempValue;
         for (int i = 1; i < length; i += 1) {
-            if (Math.abs(closestToValue) > Math.abs(temperatureSeries[i] - tempValue)) {
-                closestToValue = temperatureSeries[i] - tempValue;
-            } else if (Math.abs(closestToValue) == temperatureSeries[i] - tempValue) {
-                closestToValue = temperatureSeries[i] - tempValue;
+            double now = temperatureSeries[i] - tempValue;
+            if (Math.abs(closestToValue) > Math.abs(now)) {
+                closestToValue = now;
+            } else if (Math.abs(closestToValue) == now) {
+                closestToValue = now;
             }
         }
         return closestToValue + tempValue;
@@ -130,14 +132,15 @@ public class TemperatureSeriesAnalysis {
     public int addTemps(double[] temps) {
         checkEmptyData(temps);
         length += temps.length;
+        int prevLen = length - temps.length;
         if (length > temperatureSeries.length) {
             double[] newArray = new double[length * 2];
             if (length - temps.length >= 0) {
-                System.arraycopy(temperatureSeries, 0, newArray, 0, length - temps.length);
+                System.arraycopy(temperatureSeries, 0, newArray, 0, prevLen);
             }
             temperatureSeries = newArray;
         }
-        System.arraycopy(temps, 0, temperatureSeries, length - temps.length, temps.length);
+        System.arraycopy(temps, 0, temperatureSeries, prevLen, temps.length);
         return length;
     }
 }
