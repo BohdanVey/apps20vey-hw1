@@ -7,9 +7,16 @@ public class TemperatureSeriesAnalysis {
     static final double MINIMUM_TEMPERATURE = -273.15;
     static final double[] DEFAULT_ARRAY = {0.0};
 
-    public double[] temperatureSeries;
-    public int length;
+    private double[] temperatureSeries;
+    private int length;
 
+    public int getLength() {
+        return length;
+    }
+
+    public double[] getTemperatureSeries() {
+        return temperatureSeries;
+    }
 
     public TemperatureSeriesAnalysis() {
         length = 1;

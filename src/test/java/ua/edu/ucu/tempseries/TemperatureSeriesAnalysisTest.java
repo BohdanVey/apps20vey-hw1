@@ -146,8 +146,8 @@ public class TemperatureSeriesAnalysisTest {
     }
 
     public void testAddElement(ArrayList<Double> arr, TemperatureSeriesAnalysis seriesAnalysis) {
-        for (int i = 0; i < seriesAnalysis.length; i += 1)
-            assertEquals(arr.get(i), seriesAnalysis.temperatureSeries[i], 0.00001);
+        for (int i = 0; i < seriesAnalysis.getLength(); i += 1)
+            assertEquals(arr.get(i), seriesAnalysis.getTemperatureSeries()[i], 0.00001);
     }
 
     @Test
