@@ -7,8 +7,8 @@ public class TemperatureSeriesAnalysis {
     static final double MINIMUM_TEMPERATURE = -273.15;
     static final double[] DEFAULT_ARRAY = {0.0};
 
-    double[] temperatureSeries;
-    int length;
+    public double[] temperatureSeries;
+    public int length;
 
 
     private void checkEmptyData(double[] Series) {

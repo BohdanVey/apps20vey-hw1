@@ -31,7 +31,6 @@ public class TemperatureSeriesAnalysisTest {
     public void testDeviation() {
         double[] temperatureSeries = {-1.0, -2.0, 1.0, 2.0};
         testDeviation(temperatureSeries, 2.5);
-
         double[] temperatureSeries2 = {-1.0, -2.0, 1.0, 2.0, 100.0};
         testDeviation(temperatureSeries2, 1602);
     }
