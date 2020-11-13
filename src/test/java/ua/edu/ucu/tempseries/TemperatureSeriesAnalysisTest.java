@@ -1,8 +1,8 @@
 package ua.edu.ucu.tempseries;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.Ignore;
 
 import java.util.*;
 
@@ -16,7 +16,9 @@ public class TemperatureSeriesAnalysisTest {
     @Test
     public void testAverage() {
         double[] temperatureSeries = {-1.0, -2.0, 1.0, 2.0};
-        testAverage(temperatureSeries, 0);
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double actualResult = seriesAnalysis.average();
+        assertEquals(0, actualResult, 0.00001);
         double[] temperatureSeries2 = {-1.0, -2.0, 1.0, 2.0, 100.0};
         testAverage(temperatureSeries2, 20);
     }

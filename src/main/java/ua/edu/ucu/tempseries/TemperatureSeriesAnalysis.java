@@ -10,15 +10,12 @@ public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
     private int length;
 
-
     public TemperatureSeriesAnalysis() {
         length = 1;
         temperatureSeries = DEFAULT_ARRAY;
     }
 
-
     public TemperatureSeriesAnalysis(double[] series) {
-        // Check it data is correct
         checkEmptyData(series);
         length = series.length;
         this.temperatureSeries = series;
