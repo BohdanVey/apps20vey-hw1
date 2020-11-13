@@ -11,7 +11,7 @@ public class TemperatureSeriesAnalysis {
     int length;
 
 
-    private void checkData(double[] Series) {
+    private void checkEmptyData(double[] Series) {
         for (double temperature : Series) {
             if (temperature < MINIMUM_TEMPERATURE) {
                 throw new InputMismatchException();
@@ -33,7 +33,7 @@ public class TemperatureSeriesAnalysis {
 
     public TemperatureSeriesAnalysis(double[] Series) {
         // Check it data is correct
-        checkData(Series);
+        checkEmptyData(Series);
         length = temperatureSeries.length;
         this.temperatureSeries = Series;
     }
@@ -51,7 +51,7 @@ public class TemperatureSeriesAnalysis {
         checkLength();
         double average = average();
         double ans = 0;
-        for (int i = 0; i < Math.min(length, temperatureSeries.length); i += 1) {
+        for (int i = 0; i < length; i += 1) {
             ans += (temperatureSeries[i] - average) * (temperatureSeries[i] - average) / length;
         }
 
@@ -83,15 +83,15 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToValue(double tempValue) {
         checkLength();
-        double ClosestToValue = temperatureSeries[0] - tempValue;
-        for (int i = 1; i < Math.min(length, temperatureSeries.length); i += 1) {
-            if (Math.abs(ClosestToValue) > Math.abs(temperatureSeries[i] - tempValue)) {
-                ClosestToValue = temperatureSeries[i] - tempValue;
-            } else if (Math.abs(ClosestToValue) == temperatureSeries[i] - tempValue) {
-                ClosestToValue = temperatureSeries[i] - tempValue;
+        double closestToValue = temperatureSeries[0] - tempValue;
+        for (int i = 1; i < length; i += 1) {
+            if (Math.abs(closestToValue) > Math.abs(temperatureSeries[i] - tempValue)) {
+                closestToValue = temperatureSeries[i] - tempValue;
+            } else if (Math.abs(closestToValue) == temperatureSeries[i] - tempValue) {
+                closestToValue = temperatureSeries[i] - tempValue;
             }
         }
-        return ClosestToValue + tempValue;
+        return closestToValue + tempValue;
     }
 
     private double[] getSomeValue(int multiplier, double tempValue) {
@@ -127,18 +127,16 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double[] temps) {
-        checkData(temps);
+        checkEmptyData(temps);
         length += temps.length;
         if (length > temperatureSeries.length) {
             double[] newArray = new double[length * 2];
-            if (temperatureSeries.length >= length - temps.length && length - temps.length >= 0) {
+            if (length - temps.length >= 0) {
                 System.arraycopy(temperatureSeries, 0, newArray, 0, length - temps.length);
             }
             temperatureSeries = newArray;
         }
-        if(length < temperatureSeries.length) {
-            System.arraycopy(temps, 0, temperatureSeries, length - temps.length, temps.length);
-        }
+        System.arraycopy(temps, 0, temperatureSeries, length - temps.length, temps.length);
         return length;
     }
 }
