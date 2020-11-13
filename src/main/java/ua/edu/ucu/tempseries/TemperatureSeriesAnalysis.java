@@ -11,6 +11,20 @@ public class TemperatureSeriesAnalysis {
     public int length;
 
 
+    public TemperatureSeriesAnalysis() {
+        length = 1;
+        temperatureSeries = DEFAULT_ARRAY;
+    }
+
+
+    public TemperatureSeriesAnalysis(double[] Series) {
+        // Check it data is correct
+        checkEmptyData(Series);
+        length = temperatureSeries.length;
+        this.temperatureSeries = Series;
+    }
+
+
     private void checkEmptyData(double[] Series) {
         for (double temperature : Series) {
             if (temperature < MINIMUM_TEMPERATURE) {
@@ -23,19 +37,6 @@ public class TemperatureSeriesAnalysis {
         if (length == 0) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public TemperatureSeriesAnalysis() {
-        length = 1;
-        temperatureSeries = DEFAULT_ARRAY;
-    }
-
-
-    public TemperatureSeriesAnalysis(double[] Series) {
-        // Check it data is correct
-        checkEmptyData(Series);
-        length = temperatureSeries.length;
-        this.temperatureSeries = Series;
     }
 
     public double average() {
